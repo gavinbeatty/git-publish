@@ -7,16 +7,19 @@ git publish: a simple script to ease the unnecessarily complex task of
 to it on a remote repo, and setting up the local branch to track the remote
 one, all in one go.
 
-Usage: git publish [-v] [-n] [-f | -d] [<branch> [<remote>]]
+    Usage: git publish [-v] [-n] [-f | -d] [<branch> [<remote>]]
 
-<branch> is the branch to publish -- defaults to `git symbolic-ref HEAD`
-<remote> is the remote to publish to -- defaults to origin
+    <branch> is the branch to publish -- defaults to `git symbolic-ref HEAD`
+    <remote> is the remote to publish to -- defaults to origin
 
--v -- print each command as it is run.
--n -- don't run any commands, just print them.
--f -- don't do any checks on existing tracking branches etc. before
-      publishing.
--d -- delete the published branch from the remote repo and stop tracking.
+    -v -- print each command as it is run.
+    -n -- don't run any commands, just print them.
+    -f -- don't do any checks on existing tracking branches etc. before
+          publishing.
+    -d -- delete the published branch from the remote repo and stop tracking.
+
+License
+-------
 
 git publish is a modified version of git-publish-branch, found:
 http://git-wt-commit.rubyforge.org/git-publish-branch
@@ -38,12 +41,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You can find the GNU General Public License at:
-  http://www.gnu.org/licenses/
+http://www.gnu.org/licenses/
 
 
 Install
 -------
 e.g.,
-install -m 0755 git-publish /usr/local/bin
+    install -m 0755 git-publish /usr/local/bin
 
 

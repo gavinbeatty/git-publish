@@ -40,3 +40,10 @@ GNU General Public License for more details.
 You can find the GNU General Public License at:
   http://www.gnu.org/licenses/
 
+
+Install
+-------
+e.g.,
+install -m 0755 git-publish /usr/local/bin
+
+

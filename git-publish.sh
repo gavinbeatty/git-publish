@@ -1,9 +1,9 @@
 #!/bin/sh
 
-## git-publish-branch: a simple script to ease the unnecessarily complex
-## task of "publishing" a branch, i.e., taking a local branch, creating a
-## reference to it on a remote repo, and setting up the local branch to
-## track the remote one, all in one go.
+## git publish: a simple script to ease the unnecessarily complex task of
+## "publishing" a branch, i.e., taking a local branch, creating a reference
+## to it on a remote repo, and setting up the local branch to track the remote
+## one, all in one go.
 ##
 ## Usage: git publish [-v] [-n] [-f | -d] [<branch> [<remote>]]
 ##
@@ -19,8 +19,11 @@
 ## git publish is a modified version of git-publish-branch, found:
 ## http://git-wt-commit.rubyforge.org/git-publish-branch
 ##
+## As this is a fork of git-publish-branch, it retains the original copyright.
 ## git-publish-branch Copyright 2008 William Morgan <wmorgan-git-wt-add@masanjin.net>.
-## Modified 2010 Gavin Beatty <gavinbeatty@gmail.com>.
+##
+## The modifications are copyright.
+## git publish Copyright 2010 Gavin Beatty <gavinbeatty@gmail.com>.
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -39,7 +42,7 @@ set -u
 set -e
 
 usage() {
-    echo "Usage: $(basename -- "$0") [-n] [-f] [-v] [-d] [<branch> [<remote>]]"
+    echo "Usage: git publish [-n] [-f] [-v] [-d] [<branch> [<remote>]]"
 }
 die() {
     echo "error: $@" >&2

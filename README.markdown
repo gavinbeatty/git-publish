@@ -2,10 +2,10 @@ git-publish
 ===========
 Gavin Beatty <gavinbeatty@gmail.com>
 
-git publish: a simple script to ease the unnecessarily complex task of
-"publishing" a branch, i.e., taking a local branch, creating a reference
-to it on a remote repo, and setting up the local branch to track the remote
-one, all in one go.
+git publish: a simple shell script to ease the unnecessarily complex task of
+"publishing" a branch, i.e., taking a local branch, creating a reference to it
+on a remote repo, and setting up the local branch to track the remote one, all
+in one go.
 
     Usage: git publish [-v] [-n] [-f | -d] [<branch> [<remote>]]
 
@@ -17,6 +17,15 @@ one, all in one go.
     -f -- don't do any checks on existing tracking branches etc. before
           publishing.
     -d -- delete the published branch from the remote repo and stop tracking.
+
+
+Dependencies
+------------
+
+* getopts: in POSIX.
+* sed: in POSIX.
+* git: it is very much not in POSIX.
+
 
 License
 -------
@@ -46,6 +55,10 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+
+No install facilities are provided as it would be a _shockin'_ _holy_ waste of
+a Makefile.
+
 e.g.,
     install -m 0755 git-publish /usr/local/bin
 

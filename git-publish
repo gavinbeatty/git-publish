@@ -1,5 +1,7 @@
 #!/bin/sh
 
+## version: 1.0
+
 ## git publish: a simple script to ease the unnecessarily complex task of
 ## "publishing" a branch, i.e., taking a local branch, creating a reference
 ## to it on a remote repo, and setting up the local branch to track the remote

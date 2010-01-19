@@ -12,6 +12,10 @@ in one go.
     <branch> is the branch to publish -- defaults to `git symbolic-ref HEAD`
     <remote> is the remote to publish to -- defaults to origin
 
+    NOTE: <branch> and <remote> have the inverse order of git push.
+          Publishing a specific branch is more common than publishing to a
+          specific remote.
+
     -v -- print each command as it is run.
     -n -- don't run any commands, just print them.
     -f -- don't do any checks on existing tracking branches etc. before

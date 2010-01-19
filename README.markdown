@@ -26,9 +26,12 @@ in one go.
 Dependencies
 ------------
 
+* sh: in POSIX
 * getopts: in POSIX.
 * sed: in POSIX.
 * git: it is very much not in POSIX.
+
+As such, git-publish should be portable across all platforms that Git supports.
 
 
 License

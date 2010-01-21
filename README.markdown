@@ -62,11 +62,10 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+Default prefix is /usr/local:
+    sudo make install
 
-No install facilities are provided as it would be a _shockin'_ _holy_ waste of
-a Makefile.
-
-e.g.,
-    install -m 0755 git-publish /usr/local/bin
+Select your own prefix:
+    make install prefix=~/
 
 

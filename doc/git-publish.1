@@ -1,0 +1,83 @@
+'\" t
+.\"     Title: git-publish
+.\"    Author: [see the "AUTHOR" section]
+.\" Generator: DocBook XSL Stylesheets v1.75.2 <http://docbook.sf.net/>
+.\"      Date: 01/21/2010
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "GIT\-PUBLISH" "1" "01/21/2010" "\ \&" "\ \&"
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+git-publish \- push a git branch to a remote and track it
+.SH "SYNOPSIS"
+.sp
+\fBgit\-publish\fR [\fB\-v\fR] [\fB\-n\fR] [\fB\-f\fR | \fB\-d\fR] [\fI<branch>\fR [\fI<remote>\fR]]
+.SH "DESCRIPTION"
+.sp
+Publish \fI<branch>\fR to \fI<remote>\fR and configure the local \fI<branch>\fR to track \fI<branch>\fR on the remote end\&.
+.SH "OPTIONS"
+.PP
+\fB\-v\fR
+.RS 4
+Print the git commands before executing them\&.
+.RE
+.PP
+\fB\-n\fR
+.RS 4
+Don\(cqt run any of the git commands\&. Only print them, as in
+\fB\-v\fR\&.
+.RE
+.PP
+\fB\-f\fR
+.RS 4
+Don\(cqt run any tests on the local and remote branches to see if they are already tracking branches, etc\&.
+.RE
+.PP
+\fB\-d\fR
+.RS 4
+Delete the specified
+\fI<branch>\fR
+from
+\fI<remote>\fR
+and stop tracking it\&.
+.RE
+.PP
+<branch>
+.RS 4
+The local branch you want to publish\&.
+.RE
+.PP
+<remote>
+.RS 4
+The remote to which you want to publish\&.
+.RE
+.SH "EXIT STATUS"
+.sp
+0 on success and non\-zero on failure\&.
+.SH "AUTHOR"
+.sp
+Gavin Beatty <gavinbeatty@gmail\&.com> Forked from git\-publish\-branch
+.SH "RESOURCES"
+.sp
+Website: http://code\&.google\&.com/p/git\-publish/
+.SH "REPORTING BUGS"
+.sp
+Please report all bugs and wishes to <gavinbeatty@gmail\&.com>
+.SH "COPYING"
+.sp
+git\-publish Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail\&.com>
+.sp
+Originally a fork of git\-publish\-branch, and as such, retaining copyright: http://git\-wt\-commit\&.rubyforge\&.org/git\-publish\-branch git\-publish\-branch Copyright (C) 2008 William Morgan <wmorgan\-git\-wt\-add@masanjin\&.net>\&.
+.sp
+Free use of this software is granted under the terms of the GNU General Public License version 3, or at your option, any later version\&. (GPLv3+)

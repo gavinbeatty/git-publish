@@ -1,0 +1,74 @@
+GIT-PUBLISH(1)
+==============
+
+NAME
+-----
+git-publish - push a git branch to a remote and track it
+
+
+SYNOPSIS
+--------
+*git-publish* [*-v*] [*-n*] [*-f* | *-d*] ['<branch>' ['<remote>']]
+
+
+DESCRIPTION
+-----------
+Publish '<branch>' to '<remote>' and configure the local '<branch>' to track '<branch>'
+on the remote end.
+
+
+OPTIONS
+-------
+*-v*::
+    Print the git commands before executing them.
+
+*-n*::
+    Don't run any of the git commands. Only print them, as in *-v*.
+
+*-f*::
+    Don't run any tests on the local and remote branches to see if they are
+    already tracking branches, etc.
+
+*-d*::
+    Delete the specified '<branch>' from '<remote>' and stop tracking it.
+
+`<branch>`::
+    The local branch you want to publish.
+
+`<remote>`::
+    The remote to which you want to publish.
+
+
+EXIT STATUS
+-----------
+0 on success and non-zero on failure.
+
+
+AUTHOR
+------
+Gavin Beatty <gavinbeatty@gmail.com>
+Forked from git-publish-branch
+
+
+RESOURCES
+---------
+Website: <http://code.google.com/p/git-publish/>
+
+
+REPORTING BUGS
+--------------
+Please report all bugs and wishes to <gavinbeatty@gmail.com>
+
+
+COPYING
+-------
+git-publish Copyright \(C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
+
+Originally a fork of git-publish-branch, and as such, retaining copyright:
+http://git-wt-commit.rubyforge.org/git-publish-branch
+git-publish-branch Copyright \(C) 2008 William Morgan <wmorgan-git-wt-add@masanjin.net>.
+
+Free use of this software is granted under the terms of the GNU General Public
+License version 3, or at your option, any later version. (GPLv3+)
+
+

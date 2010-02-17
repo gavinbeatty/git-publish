@@ -55,7 +55,7 @@ doit() {
     fi
 }
 assert_HEAD() {
-    if ! git rev-parse --verify -q >/dev/null ; then
+    if ! git rev-parse --verify -q HEAD >/dev/null ; then
         die "Cannot operate with detached HEAD without being given <branch>"
     fi
 }
@@ -88,6 +88,10 @@ main() {
             ;;
         -t|--tracking-only)
             track="true"
+            ;;
+        --version)
+            version_print
+            exit 0
             ;;
         --)
             shift

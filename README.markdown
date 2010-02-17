@@ -40,6 +40,9 @@ From the manpage:
                Don’t push any local branches or delete any remote ones - only
                change tracking configuration.
 
+           --version
+               Print version info in the format ´git publish version $version´.
+
            <remote>
                The remote to which you want to publish.
 

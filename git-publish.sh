@@ -1,23 +1,5 @@
 #!/bin/sh
 
-## version: 1.0
-
-## git publish: a simple script to ease the unnecessarily complex task of
-## "publishing" a branch, i.e., taking a local branch, creating a reference
-## to it on a remote repo, and setting up the local branch to track the remote
-## one, all in one go.
-##
-## Usage: git publish [-v] [-n] [-f | -d] [<branch> [<remote>]]
-##
-## <branch> is the branch to publish -- defaults to `git symbolic-ref HEAD`
-## <remote> is the remote to publish to -- defaults to origin
-##
-## -v -- print each command as it is run.
-## -n -- don't run any commands, just print them.
-## -f -- don't do any checks on existing tracking branches etc. before
-##       publishing.
-## -d -- delete the published branch from the remote repo and stop tracking.
-##
 ## git publish is a modified version of git-publish-branch, found:
 ## http://git-wt-commit.rubyforge.org/git-publish-branch
 ##
@@ -40,15 +22,28 @@
 ## You can find the GNU General Public License at:
 ##   http://www.gnu.org/licenses/
 
-set -u
 set -e
 
-usage() {
-    echo "Usage: git publish [-n] [-f] [-v] [-d] [<branch> [<remote>]]"
-}
-die() {
-    echo "error: $@" >&2
-    exit 1
+# @VERSION@
+
+SUBDIRECTORY_OK=Yes
+OPTIONS_KEEPDASHDASH=""
+OPTIONS_SPEC="\
+git publish [options] [<remote>]
+git publish [options] -d
+--
+v,verbose   print each command as it is run
+n,dry-run   don't run any commands, just print them
+f,force     don't do any checks on whether <local_branch> is tracking a branch already
+b,branch=   the local branch whose tracking information we will change and that we will publish
+d,delete    delete tracking configuration for <local_branch>
+t,tracking-only only update tracking info - don't publish or delete any remote branches
+version     print version info in 'git publish version \$version' format"
+
+. "$(git --exec-path)/git-sh-setup"
+
+version_print() {
+    echo "git publish version ${VERSION}"
 }
 
 doit() {
@@ -59,67 +54,67 @@ doit() {
         "$@"
     fi
 }
+assert_HEAD() {
+    if ! git rev-parse --verify -q >/dev/null ; then
+        die "Cannot operate with detached HEAD without being given <branch>"
+    fi
+}
 
 main() {
     dryrun=""
     force=""
     verbose=""
     delete=""
-    if ! type "git" 1>/dev/null 2>&1 ; then
-        die "Please install git."
-    fi
-    if ! git rev-parse --git-dir >/dev/null 2>&1 ; then
-        die "Not a git repository (or any of the parent directories)"
-    fi
-
-    while getopts ":hnfvd" opt ; do
-        case "$opt" in
-        h)
-            usage
-            exit 0
-            ;;
-        n)
+    branch=""
+    track=""
+    while test $# -ne 0 ; do
+        case "$1" in
+        -n|--dry-run)
             dryrun="true"
             verbose="true"
             ;;
-        f)
+        -f|--force)
             force="true"
             ;;
-        v)
+        -v|--verbose)
             verbose="true"
             ;;
-        d)
+        -d|--delete)
             delete="true"
             ;;
-        \?)
-            die "invalid option: -${OPTARG}"
+        -b|--branch)
+            branch="$2"
+            shift
             ;;
-        *)
-            die "invalid getopts return: $opt"
+        -t|--tracking-only)
+            track="true"
+            ;;
+        --)
+            shift
+            break
             ;;
         esac
+        shift
     done
-    shift "$(expr "$OPTIND" - 1)"
-    OPTIND=1
 
-    branch="HEAD"
     remote="origin"
-
     if test $# -gt 0 ; then
-        branch="$1"
+        remote="$1"
     fi
     if test $# -gt 1 ; then
-        remote="$2"
-    fi
-    if test $# -gt 2 ; then
         usage >&2
         exit 1
     fi
-    branch="$(git symbolic-ref "$branch")"
-    branch="$(echo "$branch" | sed -e 's|^refs/heads/||')"
+    if test -z "$branch" ; then
+        assert_HEAD
+        branch="$(git symbolic-ref "$branch")"
+        branch="$(echo "$branch" | sed -e 's|^refs/heads/||')"
+    fi
 
     if test -n "$delete" ; then
-        doit git push "$remote" ":refs/heads/${branch}"
+        if test -z "$track" ; then
+            doit git push "$remote" ":refs/heads/${branch}"
+        fi
         doit git config --unset "branch.${branch}.remote"
         doit git config --unset "branch.${branch}.merge"
 
@@ -139,7 +134,9 @@ main() {
             fi
         fi
 
-        doit git push "$remote" "${branch}:refs/heads/${branch}"
+        if test -z "$track" ; then
+            doit git push "$remote" "${branch}:refs/heads/${branch}"
+        fi
         doit git config "branch.${branch}.remote" "$remote"
         doit git config "branch.${branch}.merge" "refs/heads/${branch}"
     fi

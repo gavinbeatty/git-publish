@@ -8,7 +8,7 @@ git-publish - push a git branch to a remote and track it
 
 SYNOPSIS
 --------
-*git-publish* [*-v*] [*-n*] [*-f* | *-d*] ['<branch>' ['<remote>']]
+*git-publish* ['OPTIONS'] ['<remote>']
 
 
 DESCRIPTION
@@ -19,21 +19,25 @@ on the remote end.
 
 OPTIONS
 -------
-*-v*::
+*-v, --verbose*::
     Print the git commands before executing them.
 
-*-n*::
+*-n, --dry-run*::
     Don't run any of the git commands. Only print them, as in *-v*.
 
-*-f*::
+*-f, --force*::
     Don't run any tests on the local and remote branches to see if they are
     already tracking branches, etc.
 
-*-d*::
+*-d, --delete*::
     Delete the specified '<branch>' from '<remote>' and stop tracking it.
 
-`<branch>`::
-    The local branch you want to publish.
+*-b, --branch*='<branch>'::
+    The branch we wish to publish.
+
+*-t, --tracking-only*::
+    Don't push any local branches or delete any remote ones - only change
+    tracking configuration.
 
 `<remote>`::
     The remote to which you want to publish.

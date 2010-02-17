@@ -553,7 +553,7 @@ footnotes: function () {
 </div>
 <h2 id="_synopsis">SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><strong>git-publish</strong> [<strong>-v</strong>] [<strong>-n</strong>] [<strong>-f</strong> | <strong>-d</strong>] [<em>&lt;branch&gt;</em> [<em>&lt;remote&gt;</em>]]</p></div>
+<div class="paragraph"><p><strong>git-publish</strong> [<em>OPTIONS</em>] [<em>&lt;remote&gt;</em>]</p></div>
 </div>
 <h2 id="_description">DESCRIPTION</h2>
 <div class="sectionbody">
@@ -564,7 +564,7 @@ on the remote end.</p></div>
 <div class="sectionbody">
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<strong>-v</strong>
+<strong>-v, --verbose</strong>
 </dt>
 <dd>
 <p>
@@ -572,7 +572,7 @@ on the remote end.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>-n</strong>
+<strong>-n, --dry-run</strong>
 </dt>
 <dd>
 <p>
@@ -580,7 +580,7 @@ on the remote end.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>-f</strong>
+<strong>-f, --force</strong>
 </dt>
 <dd>
 <p>
@@ -589,7 +589,7 @@ on the remote end.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>-d</strong>
+<strong>-d, --delete</strong>
 </dt>
 <dd>
 <p>
@@ -597,11 +597,20 @@ on the remote end.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<tt>&lt;branch&gt;</tt>
+<strong>-b, --branch</strong>=<em>&lt;branch&gt;</em>
 </dt>
 <dd>
 <p>
-    The local branch you want to publish.
+    The branch we wish to publish.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-t, --tracking-only</strong>
+</dt>
+<dd>
+<p>
+    Don&#8217;t push any local branches or delete any remote ones - only change
+    tracking configuration.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -644,7 +653,7 @@ License version 3, or at your option, any later version. (GPLv3+)</p></div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-01-21 16:07:33 CEST
+Last updated 2010-02-17 10:28:32 CEST
 </div>
 </div>
 </body>

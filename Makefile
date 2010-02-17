@@ -18,48 +18,75 @@ BZIP2 = bzip2
 ASCIIDOC = asciidoc
 A2X = a2x
 SED = sed
+MKDIR = mkdir -p --
+TOUCH = touch
 
 default: all
 .PHONY: default
 
 .SUFFIXES:
 
--include gen-version.mk
--include dist.mk
--include man2txt.mk
+include make/builddir.mk
+include make/gen-version.mk
+include make/dist.mk
+include make/man2txt.mk
+-include make/.builddir.mk
+-include $(builddir)/.build.mk
 
+ifneq ($(HAVE_BUILDDIR),1)
+all: builddir
+	$(call write_builddir_path,builddir)
+	@echo 'Now `make` again.'
+else
 all: bin doc
+endif
 install: install-bin install-doc
-clean: clean-bin clean-doc
-.PHONY: all install clean
+clean:
+	$(RM) -r $(builddir)
+builddir_doc:
+	$(INSTALL_DIR) $(builddir)/doc
+builddir: builddir_ builddir_doc
+.PHONY: all install clean builddir builddir_doc
 
-doc/$(PROJECT).1: doc/$(PROJECT).1.txt
-	$(A2X) -f manpage -L doc/$(PROJECT).1.txt
-doc/$(PROJECT).1.html: doc/$(PROJECT).1.txt
-	$(ASCIIDOC) doc/$(PROJECT).1.txt
-doc/$(PROJECT).txt: doc/$(PROJECT).1
-	$(call man2txt,doc/$(PROJECT).1,doc/$(PROJECT).txt)
-doc: doc/$(PROJECT).1 doc/$(PROJECT).1.html doc/$(PROJECT).txt
-clean-doc:
-	$(RM) doc/$(PROJECT).1 doc/$(PROJECT).1.html doc/$(PROJECT).txt
-install-doc: doc/$(PROJECT).1 doc/$(PROJECT).1.html doc/$(PROJECT).txt
+DOCS =
+DOCS += $(builddir)/doc/$(PROJECT).1.txt
+DOCS += $(builddir)/doc/$(PROJECT).1
+DOCS += $(builddir)/doc/$(PROJECT).1.html
+DOCS += $(builddir)/doc/$(PROJECT).txt
+DOCS_INSTALL = $(DOCS)
+DOCS_INSTALL += README.markdown
+
+$(builddir)/doc/$(PROJECT).1.txt: doc/$(PROJECT).1.txt.in
+	$(SED) -e 's/^# @VERSION@/:man version: $(VERSION)/' doc/$(PROJECT).1.txt.in \
+	> $(builddir)/doc/$(PROJECT).1.txt
+$(builddir)/doc/$(PROJECT).1: $(builddir)/doc/$(PROJECT).1.txt
+	$(A2X) -f manpage -L $(builddir)/doc/$(PROJECT).1.txt
+$(builddir)/doc/$(PROJECT).1.html: $(builddir)/doc/$(PROJECT).1.txt
+	$(ASCIIDOC) $(builddir)/doc/$(PROJECT).1.txt
+$(builddir)/doc/$(PROJECT).txt: $(builddir)/doc/$(PROJECT).1
+	$(call man2txt,$(builddir)/doc/$(PROJECT).1,$(builddir)/doc/$(PROJECT).txt)
+doc: $(DOCS)
+install-doc: $(DOCS_INSTALL)
 	$(INSTALL_DIR) $(man1dir)
-	$(INSTALL_DATA) doc/$(PROJECT).1 $(man1dir)
-	$(INSTALL_DATA) doc/$(PROJECT).1.html $(man1dir)
+	$(INSTALL_DATA) $(builddir)/doc/$(PROJECT).1 $(man1dir)
+	$(INSTALL_DATA) $(builddir)/doc/$(PROJECT).1.html $(man1dir)
 	$(INSTALL_DIR) $(docdir)
-	$(INSTALL_DATA) doc/$(PROJECT).txt $(docdir)
+	$(INSTALL_DATA) $(builddir)/doc/$(PROJECT).txt $(docdir)
 	$(INSTALL_DATA) README.markdown $(docdir)
-.PHONY: doc clean-doc install-doc doc
+.PHONY: doc install-doc
 
-$(PROJECT): $(PROJECT).sh $(VERSION_DEP)
-	$(SED) -e 's/^# @VERSION@/VERSION=$(VERSION)/' $(PROJECT).sh > $(PROJECT)
-	@chmod +x $(PROJECT)
-bin: $(PROJECT)
-clean-bin:
-	$(RM) $(PROJECT)
-install-bin: $(PROJECT)
+BINS =
+BINS += $(builddir)/$(PROJECT)
+BINS_INSTALL = $(BINS)
+
+$(builddir)/$(PROJECT): $(PROJECT).sh $(VERSION_DEP)
+	$(SED) -e 's/^# @VERSION@/VERSION=$(VERSION)/' $(PROJECT).sh \
+	> $(builddir)/$(PROJECT)
+	@chmod +x $(builddir)/$(PROJECT)
+bin: $(BINS)
+install-bin: $(BINS_INSTALL)
 	$(INSTALL_DIR) $(bindir)
-	$(INSTALL_BIN) $(PROJECT) $(bindir)
-.PHONY: bin clean-bin insetall-bin
+	$(INSTALL_BIN) $(builddir)/$(PROJECT) $(bindir)
+.PHONY: bin install-bin
 
 

@@ -1,2 +1,4 @@
 git-publish
 VERSION
+make/.builddir.mk
+build

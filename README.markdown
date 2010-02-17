@@ -109,6 +109,13 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+Configure:
+    make
+
+Or configure with your own build directory:
+    make builddir=../build/git-publish
+
+Build:
     make
 
 Default prefix is `/usr/local`:

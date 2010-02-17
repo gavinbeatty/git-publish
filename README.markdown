@@ -7,27 +7,71 @@ git publish: a simple shell script to ease the unnecessarily complex task of
 on a remote repo, and setting up the local branch to track the remote one, all
 in one go.
 
-    Usage: git publish [-v] [-n] [-f | -d] [<branch> [<remote>]]
+From the manpage:
 
-    <branch> is the branch to publish -- defaults to `git symbolic-ref HEAD`
-    <remote> is the remote to publish to -- defaults to origin
+    NAME
+           git-publish - push a git branch to a remote and track it
 
-    NOTE: <branch> and <remote> have the inverse order of git push.
-          Publishing a specific branch is more common than publishing to a
-          specific remote.
+    SYNOPSIS
+           git-publish [OPTIONS] [<remote>]
 
-    -v -- print each command as it is run.
-    -n -- don't run any commands, just print them.
-    -f -- don't do any checks on existing tracking branches etc. before
-          publishing.
-    -d -- delete the published branch from the remote repo and stop tracking.
+    DESCRIPTION
+           Publish <branch> to <remote> and configure the local <branch> to track
+           <branch> on the remote end.
+
+    OPTIONS
+           -v, --verbose
+               Print the git commands before executing them.
+
+           -n, --dry-run
+               Don’t run any of the git commands. Only print them, as in -v.
+
+           -f, --force
+               Don’t run any tests on the local and remote branches to see if they
+               are already tracking branches, etc.
+
+           -d, --delete
+               Delete the specified <branch> from <remote> and stop tracking it.
+
+           -b, --branch=<branch>
+               The branch we wish to publish.
+
+           -t, --tracking-only
+               Don’t push any local branches or delete any remote ones - only
+               change tracking configuration.
+
+           <remote>
+               The remote to which you want to publish.
+
+    EXIT STATUS
+           0 on success and non-zero on failure.
+
+    AUTHOR
+           Gavin Beatty <gavinbeatty@gmail.com> Forked from git-publish-branch
+
+    RESOURCES
+           Website: http://code.google.com/p/git-publish/
+
+    REPORTING BUGS
+           Please report all bugs and wishes to <gavinbeatty@gmail.com>
+
+    COPYING
+           git-publish Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
+
+           Originally a fork of git-publish-branch, and as such, retaining
+           copyright: http://git-wt-commit.rubyforge.org/git-publish-branch
+           git-publish-branch Copyright (C) 2008 William Morgan
+           <wmorgan-git-wt-add@masanjin.net>.
+
+           Free use of this software is granted under the terms of the GNU General
+           Public License version 3, or at your option, any later version.
+           (GPLv3+)
 
 
 Dependencies
 ------------
 
 * sh: in POSIX
-* getopts: in POSIX.
 * sed: in POSIX.
 * git: it is very much not in POSIX.
 
@@ -62,7 +106,9 @@ http://www.gnu.org/licenses/
 
 Install
 -------
-Default prefix is /usr/local:
+    make
+
+Default prefix is `/usr/local`:
     sudo make install
 
 Select your own prefix:

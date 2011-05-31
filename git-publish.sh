@@ -109,9 +109,10 @@ main() {
         usage >&2
         exit 1
     fi
+
     if test -z "$branch" ; then
         assert_HEAD
-        branch="$(git symbolic-ref "$branch")"
+        branch="$(git symbolic-ref HEAD)"
         branch="$(echo "$branch" | sed -e 's|^refs/heads/||')"
     fi
 

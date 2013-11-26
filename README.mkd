@@ -53,7 +53,7 @@ From the manpage:
            Gavin Beatty <gavinbeatty@gmail.com> Forked from git-publish-branch
 
     RESOURCES
-           Website: http://code.google.com/p/git-publish/
+           Website: https://github.com/gavinbeatty/git-publish
 
     REPORTING BUGS
            Please report all bugs and wishes to <gavinbeatty@gmail.com>
@@ -109,19 +109,23 @@ http://www.gnu.org/licenses/
 
 Install
 -------
+
 Configure:
+
     make
 
 Or configure with your own build directory:
+
     make builddir=../build/git-publish
 
 Build:
+
     make
 
 Default prefix is `/usr/local`:
+
     sudo make install
 
 Select your own prefix:
+
     make install prefix=~/
-
-

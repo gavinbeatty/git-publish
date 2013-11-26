@@ -1,0 +1,104 @@
+'\" t
+.\"     Title: git-publish
+.\"    Author: [see the "AUTHOR" section]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 11/25/2013
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "GIT\-PUBLISH" "1" "11/25/2013" "\ \&" "\ \&"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+git-publish \- push a git branch to a remote and track it
+.SH "SYNOPSIS"
+.sp
+\fBgit\-publish\fR [\fIOPTIONS\fR] [\fI<remote>\fR]
+.SH "DESCRIPTION"
+.sp
+Publish \fI<branch>\fR to \fI<remote>\fR and configure the local \fI<branch>\fR to track \fI<branch>\fR on the remote end\&.
+.SH "OPTIONS"
+.PP
+\fB\-v, \-\-verbose\fR
+.RS 4
+Print the git commands before executing them\&.
+.RE
+.PP
+\fB\-n, \-\-dry\-run\fR
+.RS 4
+Don\(cqt run any of the git commands\&. Only print them, as in
+\fB\-v\fR\&.
+.RE
+.PP
+\fB\-f, \-\-force\fR
+.RS 4
+Don\(cqt run any tests on the local and remote branches to see if they are already tracking branches, etc\&.
+.RE
+.PP
+\fB\-d, \-\-delete\fR
+.RS 4
+Delete the specified
+\fI<branch>\fR
+from
+\fI<remote>\fR
+and stop tracking it\&.
+.RE
+.PP
+\fB\-b, \-\-branch\fR=\fI<branch>\fR
+.RS 4
+The branch we wish to publish\&.
+.RE
+.PP
+\fB\-t, \-\-tracking\-only\fR
+.RS 4
+Don\(cqt push any local branches or delete any remote ones \- only change tracking configuration\&.
+.RE
+.PP
+\fB\-\-version\fR
+.RS 4
+Print version info in the format \*(Aqgit publish version $version\*(Aq\&.
+.RE
+.PP
+<remote>
+.RS 4
+The remote to which you want to publish\&.
+.RE
+.SH "EXIT STATUS"
+.sp
+0 on success and non\-zero on failure\&.
+.SH "AUTHOR"
+.sp
+Gavin Beatty <gavinbeatty@gmail\&.com> Forked from git\-publish\-branch
+.SH "RESOURCES"
+.sp
+Website: https://github\&.com/gavinbeatty/git\-publish
+.SH "REPORTING BUGS"
+.sp
+Please report all bugs and wishes to <gavinbeatty@gmail\&.com>
+.SH "COPYING"
+.sp
+git\-publish Copyright (C) 2010 Gavin Beatty, <gavinbeatty@gmail\&.com>
+.sp
+Originally a fork of git\-publish\-branch, and as such, retaining copyright: http://git\-wt\-commit\&.rubyforge\&.org/git\-publish\-branch
+.sp
+git\-publish\-branch Copyright (C) 2008 William Morgan <wmorgan\-git\-wt\-add@masanjin\&.net>\&.
+.sp
+Free use of this software is granted under the terms of the GNU General Public License version 3, or at your option, any later version\&. (GPLv3+)

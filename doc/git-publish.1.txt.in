@@ -59,7 +59,7 @@ Forked from git-publish-branch
 
 RESOURCES
 ---------
-Website: <http://code.google.com/p/git-publish/>
+Website: <https://github.com/gavinbeatty/git-publish>
 
 
 REPORTING BUGS
@@ -73,9 +73,8 @@ git-publish Copyright \(C) 2010 Gavin Beatty, <gavinbeatty@gmail.com>
 
 Originally a fork of git-publish-branch, and as such, retaining copyright:
 http://git-wt-commit.rubyforge.org/git-publish-branch
+
 git-publish-branch Copyright \(C) 2008 William Morgan <wmorgan-git-wt-add@masanjin.net>.
 
 Free use of this software is granted under the terms of the GNU General Public
 License version 3, or at your option, any later version. (GPLv3+)
-
-
